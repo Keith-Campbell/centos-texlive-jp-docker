@@ -44,6 +44,6 @@ USER ${UID}
 #        -v /etc/passwd:/etc/passwd:ro \ 
 #        -v /etc/group:/etc/group:ro \ 
 #        -v ${PWD}:/home \ 
-#        -it keith1994/centos-texlive-jp:latest \ 
-#        uplatex $fname.tex && dvipdfmx $fname.dvi 
-#} 
+#        keith1994/centos-texlive-jp:latest \ 
+#        /bin/bash -c "uplatex -synctex=1 $fname.tex 1> /dev/null && dvipdfmx $fname.dvi"
+#}                                                                                     
