@@ -1,4 +1,6 @@
 # CentOS TexLive Japanese
+- DockerHub URL: https://hub.docker.com/r/keith1994/centos-texlive-jp
+
 This repository contains:
 - CentOS (latest)
 - TeXLive (2020 full)
