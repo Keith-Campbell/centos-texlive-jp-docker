@@ -20,6 +20,6 @@ tex2pdf () {
         -v /etc/group:/etc/group:ro \ 
         -v ${PWD}:/home \ 
         keith1994/centos-texlive-jp:latest \ 
-        /bin/bash -c "uplatex -synctex=1 $fname.tex 1> /dev/null && dvipdfmx $fname.dvi" 
+        /bin/bash -c "uplatex -synctex=1 $fname.tex && dvipdfmx $fname.dvi" 
 } 
 ```
