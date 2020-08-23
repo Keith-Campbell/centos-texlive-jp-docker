@@ -18,7 +18,7 @@ tex2pdf () {
         -v $(pwd):/mnt/working \
         -v /etc/passwd:/etc/passwd:ro \
         -v /etc/group:/etc/group:ro \
-        -v ${PWD}:/home \
+        -v $(pwd):/home \
         keith1994/centos-texlive-jp:latest \
         /bin/bash -c \
         "uplatex -synctex=1 $fname &&\
