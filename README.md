@@ -10,16 +10,21 @@ This repository contains:
 By adding the code below in `.bashrc`, you can create pdf file by only typing `tex2pdf [fname]` on your bash terminal. Note that no file extension included in `[fname]`, e.g. `tex2pdf texfile.tex` -> `tex2pdf texfile`.
 
 ```bash
-tex2pdf () { 
-    # using uplatex -> dvipdfmx 
-    fname=$1 
-    docker run --rm \ 
-        -u "$(id -u $(whoami)):$(id -g $(whoami))" \ 
-        -v $(pwd):/mnt/working \ 
-        -v /etc/passwd:/etc/passwd:ro \ 
-        -v /etc/group:/etc/group:ro \ 
-        -v ${PWD}:/home \ 
-        keith1994/centos-texlive-jp:latest \ 
-        /bin/bash -c "uplatex -synctex=1 $fname.tex && dvipdfmx $fname.dvi" 
-} 
+tex2pdf () {
+    # using uplatex -> dvipdfmx
+    fname=$1
+    docker run --rm \
+        -u "$(id -u $(whoami)):$(id -g $(whoami))" \
+        -v $(pwd):/mnt/working \
+        -v /etc/passwd:/etc/passwd:ro \
+        -v /etc/group:/etc/group:ro \
+        -v ${PWD}:/home \
+        keith1994/centos-texlive-jp:latest \
+        /bin/bash -c \
+        "uplatex -synctex=1 $fname &&\
+        bibtex $fname &&\
+        uplatex -synctex=1 $fname &&\
+        uplatex -synctex=1 $fname &&\
+        dvipdfmx $fname"
+}
 ```
