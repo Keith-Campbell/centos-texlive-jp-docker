@@ -15,10 +15,10 @@ tex2pdf () {
     fname=$1
     docker run --rm \
         -u "$(id -u $(whoami)):$(id -g $(whoami))" \
-        -v $(pwd):/mnt/working \
+        -v "${PWD}":/mnt/working \
         -v /etc/passwd:/etc/passwd:ro \
         -v /etc/group:/etc/group:ro \
-        -v $(pwd):/home \
+        -v "${PWD}":/home \
         keith1994/centos-texlive-jp:latest \
         /bin/bash -c \
         "uplatex -synctex=1 $fname &&\
